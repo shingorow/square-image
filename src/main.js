@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fileQuerySelector,
     canvasQuerySelector
   );
+
   for (const li of listElements) {
     li.firstChild.addEventListener("click", (e) => {
       for (const l of listElements) {
@@ -35,9 +36,15 @@ document.addEventListener("DOMContentLoaded", () => {
       marginList = marginSetting.set(marginData);
     });
   }
+
   fileInput.addEventListener("change", (e) => {
     const activeSetting = marginList.find((margin) => margin.active);
     const margin = activeSetting.value;
     canvas.draw(canvasQuerySelector, margin, e.target.files[0]);
+  });
+
+  const downloadButton = document.querySelector("#download");
+  downloadButton.addEventListener("click", () => {
+    canvas.download("#canvas");
   });
 });
