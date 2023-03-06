@@ -31,12 +31,16 @@ export default class Canvas {
   download(querySelector) {
     const canvas = document.querySelector(querySelector);
     canvas.toBlob((blob) => {
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "square-image.png";
-      a.click();
+      const image = new File([blob], "square-image.png", { type: "image/png" });
+      navigator
+        .share({
+          text: "Square Image",
+          url: "https://sim.engrowth.work/",
+          files: [image],
+        })
+        .catch((error) => {
+          alert("Some errors!");
+        });
     }, "image/png");
   }
 }
