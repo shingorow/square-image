@@ -34,8 +34,8 @@ export default class Canvas {
       const image = new File([blob], "square-image.png", { type: "image/png" });
       navigator
         .share({
-          text: "Square Image",
-          url: "https://sim.engrowth.work/",
+          title: "Square Image",
+          text: "https://sim.engrowth.work/",
           files: [image],
         })
         .catch((error) => {
