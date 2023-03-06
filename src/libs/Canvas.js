@@ -30,9 +30,13 @@ export default class Canvas {
 
   download(querySelector) {
     const canvas = document.querySelector(querySelector);
-    const link = document.createElement("a");
-    link.href = canvas.toDataURL("image/png");
-    link.download = "square-image.png";
-    link.click();
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "square-image.png";
+      a.click();
+    }, "image/png");
   }
 }
